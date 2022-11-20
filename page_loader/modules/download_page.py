@@ -1,4 +1,5 @@
 import os
+import requests
 from requests import request
 from page_loader.modules.parse_url import url_parse, new_path
 
