@@ -1,11 +1,10 @@
 import os
 import requests
-from requests import request
 from page_loader.modules.parse_url import url_parse, new_path
 
 
 def download(url, directory=os.getcwd()):
-    get_page = request('GET', url)
+    get_page = requests.request('GET', url)
     page_content = get_page.text
     url_part = url_parse(url)
     path_to_file = new_path(url_part, directory)
