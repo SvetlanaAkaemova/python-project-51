@@ -31,9 +31,10 @@ def test_download(requests_mock, content_from_page, expected_html, image_content
         image_url = '/assets/professions/nodejs.png'
         img_content = open(image_content, 'rb').read()
         image = requests_mock.get('https://page-loader.hexlet.repl.co' + image_url, content=img_content)
-        os.mkdir(new_temp_path.name + '/page-loader-hexlet-repl-co-_files')
-        new_image_path = new_temp_path.name + '/page-loader-hexlet-repl-co-_files/page-loader-hexlet-repl-co-assets-professions-nodejs.png'
         result = download(url, new_temp_path.name)
+        if not os.path.isdir(new_temp_path.name + '/page-loader-hexlet-repl-co-_files'):
+            os.mkdir(new_temp_path.name + '/page-loader-hexlet-repl-co-_files')
+        new_image_path = new_temp_path.name + '/page-loader-hexlet-repl-co-_files/page-loader-hexlet-repl-co-assets-professions-nodejs.png'
         with open(new_image_path, 'rb') as i:
             assert i.read() == img_content
         assert result == new_path_to_file
